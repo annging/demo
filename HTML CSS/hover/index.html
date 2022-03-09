@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background-color: black;
+        }
+        img {
+            width: 100%;
+        }
+        .btn {
+            position: absolute;
+            top: 40%;
+            left: 30%;
+            padding: 10px 40px;
+            background-color: red;
+            color: red;
+        }
+        .container:hover img {
+            opacity: 0.6;
+        }
+        .container .btn {
+            opacity: 0;
+        }
+        .container:hover .btn {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://aaryaweb.info/html/travelride/demo/images/preview9.jpg" alt="">
+        <a class="btn" href="">去购买</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preload" href="./js/dynamic.js" as="script">
+    <title>script</title>
+</head>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            console.log('DOMContentLoaded');
+        });
+    </script>
+    <script type="text/javascript">
+        function compare(a, b) {
+            if (a < b) {
+            console.log("A is less than B");
+            } else if (a > b) {
+            console.log("A is greater than B");
+            } else {
+            console.log("A is equal to B");
+            }
+        }
+        compare(1, 2);
+    </script>
+
+    <!--async 表示立即下载脚本,不阻止其他页面动作，所以会先执行 sayHi() -->
+    
+    <script src="./js/script-example.js" type="text/javascript" charset="utf-8" async></script>
+    <script src="./js/script-example2.js" type="text/javascript" charset="utf-8" defer></script>
+    <script>
+        function sayHi() {
+            console.log("sayHi");
+        }
+        sayHi();
+    </script>
+    <script>
+        function sayScript() {
+            console.log("<\/script>")
+        }
+    </script>
+    <script>
+        // 还可以通过 DOM api 动态加载脚本
+        // 
+        let script = document.createElement("script");
+        script.src="./js/dynamic.js";
+        script.async = false; // 默认情况下 creatElement()方法创建的<script>元素是以异步方式加载的，但是有一些浏览器不支持，所以这里要显示的修改下。
+        document.body.appendChild(script);
+    </script>
+</body>
+</html>
