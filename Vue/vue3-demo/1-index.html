@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue3-demo</title>
+</head>
+<body>
+    <div id="app">
+        <label><input type="radio" v-model="value" value="一">一</label>
+        <label><input type="radio" v-model="value" value="二">二</label>
+        <label><input type="radio" v-model="value" value="三">一</label>
+        <p>选中的value值为{{ value }}</p>
+    </div>
+    
+    <script src="https://unpkg.com/vue@next"></script>   
+    <script>
+        const App = {
+            data() {
+                return {
+                    value: "一"
+                }
+            }
+        }
+
+        Vue.createApp(App).mount("#app")
+    </script>
+</body>
+</html>

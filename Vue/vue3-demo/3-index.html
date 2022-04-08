@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue3-demo</title>
+</head>
+<body>
+    <div id="app">
+        <p>所有的正数：</p>
+        <ul>
+            <li v-for="number in filterPositive(numbers)">{{ number }}</li>
+        </ul>
+        <hr>
+        <p>所有的正数的总和是： {{ getPositiveNumbersSum() }}</p>
+    </div>
+    
+    <script src="https://unpkg.com/vue@next"></script>   
+    <script>
+        const App = {
+            data() {
+                return {
+                    numbers: [-5, 0, -2, -1, 3, 5, 0.5]
+                }
+            },
+            methods: {
+                filterPositive(numbers) {
+                    return numbers.filter((number) => number >=0 )
+                },
+                getPositiveNumbers() {
+                    return this.numbers.filter((number) => number >= 0)
+                },
+                getPositiveNumbersSum() {
+                    return this.getPositiveNumbers().reduce((sum, val) => sum + val)
+                } // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+            }
+        }
+
+        Vue.createApp(App).mount("#app")
+    </script>
+</body>
+</html>

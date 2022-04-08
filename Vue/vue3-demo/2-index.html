@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue3-demo</title>
+</head>
+<body>
+    <div id="app">
+        <p>当前状态{{ statusFromId(status) }}</p>
+    </div>
+    
+    <script src="https://unpkg.com/vue@next"></script>   
+    <script>
+        const App = {
+            data() {
+                return {
+                    status: 2
+                }
+            },
+            methods: {
+                statusFromId(id) {
+                    const status = ({
+                        0: "睡觉",
+                        1: "吃饭",
+                        2: "学学Vue"
+                    })[id]
+                    return status || "未知状态" + id
+                }
+            }
+        }
+
+        Vue.createApp(App).mount("#app")
+    </script>
+</body>
+</html>

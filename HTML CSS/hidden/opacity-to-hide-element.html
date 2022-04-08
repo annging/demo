@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>display property to hide element</title>
+    <style>
+        .hidden {
+            opacity: 0;
+        }
+
+        /**
+        * Template CSS
+        * This is used only for demo.
+        **/
+
+        .container {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .button {
+            font-size: 100%;
+            padding: 0.5em 1em;
+            color: rgba(0, 0, 0, 0.8);
+            border: transparent;
+            background-color: #e6e6e6;
+            text-decoration: none;
+            border-radius: 2px;
+            margin: 0 1em;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: dodgerblue;
+        }
+
+        .button:focus {
+            background-color: yellow;
+        }
+
+        .demo-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 12px 48px;
+            background-color: rgba(#fff, 0.7);
+            border-bottom: 1px solid #e9ebf2;
+            text-align: center;
+        }
+
+        body {
+            padding-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="demo-header">
+      <label>
+        <input type="checkbox" id="toggle">
+        Toggle hidden element
+      </label>
+    </nav>
+    <div class="container">
+        <button class="button">Visible Button 1</button>
+        <button class="button" id="hide">Hidden Button 2</button>
+        <button class="button">Visible Button 3</button>
+      </div>
+      
+
+      <SCript>
+               const button = document.querySelectorAll("button");
+            button.forEach((button) =>
+                button.addEventListener("click", () => alert("You clicked " + button.textContent))
+            );
+
+            // Demo only
+
+            const checkbox = document.getElementById("toggle");
+            const hiddenButton = document.getElementById("hide");
+            checkbox.addEventListener("change", (e) => {
+                hiddenButton.classList.toggle("hidden");
+            }); 
+      </SCript>
+</body>
+</html>

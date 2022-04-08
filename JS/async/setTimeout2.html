@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>改变一个网页元素的背景色</title>
+</head>
+<body>
+    <p>由于setTimeout(f, 0)实际上意味着，将任务放到浏览器最早可得的空闲时段执行，所以那些计算量大、耗时长的任务，常常会被分成几个小部分，分别放到setTimeout(f, 0)里面执行。</p>
+    <div>11111111111111111111111111111111111</div>
+    <div>22222222222222222222222222222222222</div>
+    <script>
+        var div1 = document.getElementsByTagName('div')[0];
+        var div2 = document.getElementsByTagName('div')[1];
+
+        // 写法一  会造成浏览器“堵塞”，因为 JavaScript 执行速度远高于 DOM，会造成大量 DOM 操作“堆积”
+        for (var i = 0xA00000; i < 0xFFFFFF; i++) {
+            div1.style.backgroundColor = '#' + i.toString(16);
+        }
+
+        // 写法二 不会造成“堵塞”
+        var timer;
+        var i=0x100000;
+
+        function func() {
+            timer = setTimeout(func, 0);
+            div2.style.backgroundColor = '#' + i.toString(16);
+            if (i++ == 0xFFFFFF) clearTimeout(timer);
+        }
+
+        timer = setTimeout(func, 0);
+    </script>s
+</body>
+</html>

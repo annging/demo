@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <canvas ref="one"></canvas>
+        <a href="https://www.baidu.com" @click.prevent="handleClick">baidu</a>
+        <div @click="handleClick3">外面的
+            <button @click.stop="handleClick2">我是个按钮</button> <!--如果把stop去掉 点击这个按钮  click3也会发生-->
+        </div>
+        <button @click.one="handleClick4">只第一次点击有用</button>
+    </div>
+    
+    <script src="https://unpkg.com/vue@next"></script>   
+    <script>
+        const App = {
+            data() {
+                return {
+                }
+            },
+            mounted() {
+                this.init()
+            },
+            watch: {
+            },
+            methods: { // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+                init() {
+                    console.log(this.$refs.one)
+                    console.log(this.$ref.one)
+                },
+                handleClick() {
+                    alert("点击了链接，不会跳转")
+                },
+                handleClick2() {
+                    alert("点击了按钮,不会触发click3")
+                },
+                handleClick3() {
+                    alert("我发生了")
+                },
+                handleClick4() {
+                    alert("我是4")
+                }
+            }
+        }
+
+        Vue.createApp(App).mount("#app")
+    </script>
+</body>
+</html>

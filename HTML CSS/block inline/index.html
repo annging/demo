@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>块级元素是否可以存在于内联元素之中</title>
+    <style>
+        span {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <p>一个以block形式展现的块级元素不会被嵌套进内联元素中，但可以嵌套在其它块级元素中。</p>
+    <p><span>哈哈哈<p>一个段落</p></span></p>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="inputValue">
+        <p>{{ miao }}秒之后，显示输入的值为 "{{ oldInputValue }}"</p>
+        <hr>
+        <input type="text" v-model="formData.username" placeholder="用户名">
+        <input type="text" v-model="formData.nickname" placeholder="昵称">
+    </div>
+    
+    <script src="https://unpkg.com/vue@next"></script>   
+    <script>
+        const App = {
+            data() {
+                return {
+                    inputValue: '',
+                    oldInputValue: '',
+                    miao: 5,
+                    formData: {
+                        username: "111",
+                        nickname: "333"
+                    }
+                }
+            },
+            watch: {
+                inputValue(val, oldVal) {
+                    console.log(val, oldVal)
+                    const newValue = this.inputValue
+                    this.countDown()
+                    setTimeout(() => {
+                        this.oldInputValue = newValue
+                    }, 5000)
+                },
+                formData: {
+                    handler() {
+                        console.log('formData 改变了')
+                    },
+                    deep: true
+                },
+            },
+            methods: { // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+                countDown() { // 参数是秒
+                    let interval  = setInterval(() => {
+                        this.miao = this.miao - 1
+                        if (this.miao === 0) {
+                            clearInterval(interval)
+                        }
+                    }, 1000)
+                }
+            }
+        }
+
+        Vue.createApp(App).mount("#app")
+    </script>
+</body>
+</html>

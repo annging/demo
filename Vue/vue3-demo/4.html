@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>所有的数：</p>
+        <ul>
+            <li v-for="number in numbers">{{ number }}</li>
+        </ul>
+        <hr>
+        <p>所有的数的总和是： {{ numberTotal }}</p>
+        <input v-model="numberTotal">
+    </div>
+    
+    <script src="https://unpkg.com/vue@next"></script>   
+    <script>
+        const App = {
+            data() {
+                return {
+                    numbers: [3, 5, 0.5]
+                }
+            },
+            computed: {
+                numberTotal: {
+                    get() {
+                        return this.numbers.reduce((sum, val) => sum + val)
+                    },
+                    set(newValue) {
+                        const oldValue = this.numberTotal
+                        const difference = newValue - oldValue
+                        this.numbers.push(difference)
+                    }
+                }
+            },
+            methods: { // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+            }
+        }
+
+        Vue.createApp(App).mount("#app")
+    </script>
+</body>
+</html>

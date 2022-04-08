@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="input-box1">
+    <input type="text" id="input-box2">
+
+    <script>
+        // 用户在输入框输入文本，keypress事件会在浏览器接收文本之前触发。因此，下面的回调函数是达不到目的的。
+        document.getElementById('input-box1').onkeypress = function (event) {
+            this.value = this.value.toUpperCase();
+        }
+
+        // 将代码放入setTimeout之中，就能使得它在浏览器接收到文本之后触发
+        document.getElementById('input-box2').onkeypress = function() {
+            var self = this;
+            setTimeout(function() {
+                self.value = self.value.toUpperCase();
+            }, 0);
+        }
+    </script>
+
+</body>
+</html>
