@@ -91,21 +91,17 @@ const ex = {
   ex4: {
     html: `
     <div class="parent">
-      <div class="section yellow" contenteditable>
-      Min: 150px / Max: 25%
-      </div>
-      <div class="section purple" contenteditable>
-        This element takes the second grid position (1fr), meaning
-        it takes up the rest of the remaining space.
-      </div>
+      <header class="blue section" contenteditable>Header</header>
+      <main class="coral section" contenteditable>Main</main>
+      <footer class="purple section" contenteditable>Footer Content</footer>
     </div>
     `,
     css: `
-    .ex3 .parent {
+    .ex4 .parent {
       display: grid;
-      grid-template-columns: minmax(150px, 25%) 1fr;
+      grid-template-rows: auto 1fr auto;
     }`,
-    codepen: 'https://codepen.io/una/pen/gOaNeWL'
+    codepen: 'https://codepen.io/una/pen/bGVXPWB'
   },
   ex5: {
     html: `
