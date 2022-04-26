@@ -1,0 +1,250 @@
+:root {
+  --green: hsl(145,100%,39%);
+  --green-background: hsla(145,100%,39%, .1);
+  --blue: hsl(218,100%,63%);
+  --blue-background: hsla(218,100%,63%, .1);
+  --grey: #808080;
+  --grey-b: #cdcdcd;
+  --color-code-b: #efefef;
+
+  --pageMax: 1260px;
+  --headerHeight: 60px;
+  --middleHeight: 300px;
+  --footerHeight: 100px;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata&display=swap");
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, sans-serif;
+}
+
+h2 {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+style,
+code {
+  font-family: "Inconsolata", monospace;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  border: 1px solid var(--blue-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--blue);
+  border-radius: 0.25rem;
+}
+
+.max-width {
+    max-width: 48rem;
+}
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+main {
+  padding-bottom: 2rem;
+}
+section {
+  margin-top: 3rem;
+}
+
+p > code,
+pre {
+  display: inline-block;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid var(--grey-b);
+  padding: 0.25rem 0.5rem;
+  background-color: var(--color-code-b);
+}
+
+.ex-area {
+  margin-top: 24px;
+}
+
+.ex-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-gap: 2rem;
+}
+
+.ex-container {
+  resize: both;
+  border: 1px solid var(--grey-b);
+  border-radius: 4px;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.ex-code {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 350px;
+}
+.code-container {
+  white-space: pre-wrap;
+  display: none;
+  overflow-y: scroll;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  margin-top: -1px;
+  font-size: 1rem;
+  border: 1px solid var(--grey-b);
+  border-radius: 4px;
+}
+
+.tab-area {
+  display: grid;
+  justify-self: end;
+  grid-template-columns: 1fr 1fr;
+}
+
+.tab.active {
+  background-color: #fff;
+  z-index: 1;
+  border-bottom: none;
+}
+:focus-visible {
+  outline: none;
+}
+
+button {
+  height: 24px;
+}
+
+.box {
+  display: block;
+  padding: 2rem;
+  background-color: var(--green-background);
+  margin: 0.25rem;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ex2 h3 {
+  margin: 0;
+}
+
+.flex {
+  display: flex;
+}
+
+.panel {
+  width: 100%;
+  max-width: 200px;
+  box-shadow: 0 0 3px 3px var(--blue-background);
+  padding: 0.5rem;
+}
+
+.panel ul li {
+  display: flex;
+  list-style: none;
+  margin-bottom: 0.5rem;
+}
+.panel ul li div.avatar {
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--grey-b);
+}
+
+.username {
+  line-height: 34px;
+  padding: 0 0.25rem;
+}
+
+.ex4 .demo {
+  width: 300px;
+  height: 260px;
+  border: 1px solid var(--grey);
+  overflow: hidden;
+}
+
+.ex4 .demo img{
+  width: 100%;
+  height: 100%;
+}
+
+.ex5 .demo {
+  width: 100%;
+  height: 300px;
+  overflow: auto;
+}
+
+.ex5 .content {
+  width: 100%;
+  height: 500px;
+  background-color: var(--green-background);
+}
+
+.ex6 .content {
+  display: inline-block;
+  max-width: 20px;
+}
+
+.ex6 .action {
+  padding: 0.1rem;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.ex7 .demo {
+  height: 50px;
+  padding: 0.5rem;
+  background-color: var(--blue-background);
+}
+
+.ex8 button {
+  width: 50px;
+}
+
+.ex9 .demo {
+  width: 100%;
+  height: 260px;
+  background-image: url(https://tse4-mm.cn.bing.net/th/id/OIP-C.TYvZ749HcXjhwtXR1Lu2NgHaEo?w=200&h=200&c=7&r=0&o=5&dpr=1.5&pid=1.7);
+}
+
+.ex10 .ex-container {
+  height: 200px;
+}
+
+.ex10 .sidebar {
+  position: relative;
+  height: 100%;
+}
+.ex10 .demo {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  height: 100%;
+}
+
+.ex10 .demo .p2 {
+  height: 800px;
+  background-color: var(--blue-background);
+}

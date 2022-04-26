@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>编写防御性CSS代码</title>
+    <meta name="description" content="20个防御性方法来避免 CSS 出现某些意料之外的样式问题">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body class="max-width mx-auto">
+    <header>
+        <h1>编写防御性CSS代码</h1>
+        <p>一些防御性方法来避免 CSS 出现某些意料之外的样式问题。</p>
+        <p>✍删除或修改CSS代码来对比效果吧。</p>
+    </header>
+    <main>
+      <!-- 01 start -->
+      <section>
+        <h2>1. flex布局时自动换行</h2>
+        <p><code>flex-wrap: wrap;</code></p>
+        <div class="ex-section ex1">
+            <div class="ex-area">
+              <div class="ex-container">
+                <div class="demo">
+                  <div class="box">1</div>
+                  <div class="box">2</div>
+                  <div class="box">3</div>
+                  <div class="box">4</div>
+                </div>
+              </div>
+            </div>
+            <div class="ex-code">
+              <div class="tab-area">
+                <button class="tab html">HTML</button>
+                <button class="tab css">CSS</button>
+              </div>
+              <style class="code-container css" contenteditable></style>
+              <code class="code-container html"></code>
+            </div>
+        </div>
+
+      </section>
+      <!-- 01 end -->
+      <!-- 02 start -->
+      <section>
+        <h2>2. 空白间距</h2>
+        <p><code>margin-right: 1rem;</code></p>
+        <div class="ex-section ex2">
+            <div class="ex-area">
+              <div class="ex-container">
+                <div class="demo">
+                    <div>
+                      <h3>这是个很长的标题，很长很长的标题，很长很长的标题，一行显示不全会被截断</h3>
+                      
+                      <span style="float: right;">⚙</span>
+                    </div>
+                    <p>在左边有一个标题，在右边有一个可操作的按钮。当标题变长时，如果没有间距，文字和按钮会挨在一起。</p>
+                </div>
+              </div>
+            </div>
+            <div class="ex-code">
+              <div class="tab-area">
+                <button class="tab html">HTML</button>
+                <button class="tab css">CSS</button>
+              </div>
+              <style class="code-container css" contenteditable></style>
+              <code class="code-container html"></code>
+            </div>
+        </div>
+
+      </section>
+      <!-- 02 end -->
+      <!-- 03 start -->
+      <section>
+        <h2>3. 文本内容过长</h2>
+        <pre>white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;</pre>
+        <div class="ex-section ex3">
+            <div class="ex-area">
+              <div class="ex-container">
+                <div class="demo">
+                    <div class="panel">
+                      <ul>
+                        <li>
+                          <div class="avatar"></div>
+                          <div class="username">abacacacaca</div>
+                        </li>
+                      </ul>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="ex-code">
+              <div class="tab-area">
+                <button class="tab html">HTML</button>
+                <button class="tab css">CSS</button>
+              </div>
+              <style class="code-container css" contenteditable></style>
+              <code class="code-container html"></code>
+            </div>
+        </div>
+
+      </section>
+      <!-- 03 end -->
+      <!-- 04 start -->
+      <section>
+        <h2>4. 防止图像被拉伸或压缩</h2>
+        <p><code>object-fit: cover;</code></p>
+        <div class="ex-section ex4">
+            <div class="ex-area">
+              <div class="ex-container">
+                <div class="demo">
+                  <img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.TYvZ749HcXjhwtXR1Lu2NgHaEo" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="ex-code">
+              <div class="tab-area">
+                <button class="tab html">HTML</button>
+                <button class="tab css">CSS</button>
+              </div>
+              <style class="code-container css" contenteditable></style>
+              <code class="code-container html"></code>
+            </div>
+        </div>
+        <div>
+          <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/object-fit" target="_blank">object-fit</a>
+        </div>
+
+      </section>
+      <!-- 04 end -->
+      <!-- 05 start -->
+      <section>
+        <h2>5. 去除滚动链</h2>
+        <pre>overscroll-behavior-y: contain;
+overflow-y: auto;</pre>
+        <div class="ex-section ex5">
+            <div class="ex-area">
+              <div class="ex-container">
+                <div class="demo">
+                  <div class="wrap">
+                    默认情况下，当触及页面顶部或者底部时（或者是其他可滚动区域），移动端浏览器倾向于提供一种“触底”效果，甚至进行页面刷新。你可能也发现了，当对话框中含有可滚动内容时，一旦滚动至对话框的边界，对话框下方的页面内容也开始滚动了——这被称为“滚动链”。 
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ex-code">
+              <div class="tab-area">
+                <button class="tab html">HTML</button>
+                <button class="tab css">CSS</button>
+              </div>
+              <style class="code-container css" contenteditable></style>
+              <code class="code-container html"></code>
+            </div>
+        </div>
+        <div>
+          <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/overscroll-behavior" target="_blank">overscroll-behavior</a>
+        </div>
+
+      </section>
+      <!-- 05 end -->
+      <!-- 06 start -->
+      <section>
+        <h2>6. 自定义属性备用值</h2>
+        <pre>max-width: calc(100% - var(--actions-width, 70px));</pre>
+        <div class="ex-section ex6">
+            <div class="ex-area">
+              <div class="ex-container">
+                <div class="demo">
+                  <div class="content">
+                    这个方法用于自定义属性值可能会失败的场景
+                  </div>
+                  <div class="action">
+                    <button>关注</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ex-code">
+              <div class="tab-area">
+                <button class="tab html">HTML</button>
+                <button class="tab css">CSS</button>
+              </div>
+              <style class="code-container css" contenteditable></style>
+              <code class="code-container html"></code>
+            </div>
+        </div>
+
+      </section>
+      <!-- 06 end -->
+      <!-- 07 start -->
+      <section>
+        <h2>7. 使用固定宽高有时会出问题</h2>
+        <pre>min-height: 350px;</pre>
+        <div class="ex-section ex7">
+            <div class="ex-area">
+              <div class="ex-container">
+                <div class="demo">
+                  <div class="content">
+                    我经常会碰到在一个具有固定高度的元素内部，它包含的内容大于它的高度，这会导致布局被破坏掉。为了避免内容超出，我们需要使用 min-height 而不是 height。
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ex-code">
+              <div class="tab-area">
+                <button class="tab html">HTML</button>
+                <button class="tab css">CSS</button>
+              </div>
+              <style class="code-container css" contenteditable></style>
+              <code class="code-container html"></code>
+            </div>
+        </div>
+
+      </section>
+      <!-- 07 end -->
+
+      <!-- 08 start -->
+      <section>
+        <h2>8. 使用固定宽高有时会出问题</h2>
+        <pre>min-width: 100px;</pre>
+        <div class="ex-section ex8">
+            <div class="ex-area">
+              <div class="ex-container">
+                <div class="demo">
+                  <button>关注</button>
+                  <button>取消关注</button>
+                </div>
+              </div>
+            </div>
+            <div class="ex-code">
+              <div class="tab-area">
+                <button class="tab html">HTML</button>
+                <button class="tab css">CSS</button>
+              </div>
+              <style class="code-container css" contenteditable></style>
+              <code class="code-container html"></code>
+            </div>
+        </div>
+
+      </section>
+      <!-- 08 end -->
+      <!-- 09 start -->
+      <section>
+        <h2>9. 不要忘了background-repeat</h2>
+        <pre>background-repeat: no-repeat;</pre>
+        <p>放大左侧的容器,修改或者删除关键代码，查看效果。</p>
+        <div class="ex-section ex9">
+            <div class="ex-area">
+              <div class="ex-container">
+                <div class="demo">
+                </div>
+              </div>
+            </div>
+            <div class="ex-code">
+              <div class="tab-area">
+                <button class="tab html">HTML</button>
+                <button class="tab css">CSS</button>
+              </div>
+              <style class="code-container css" contenteditable></style>
+              <code class="code-container html"></code>
+            </div>
+        </div>
+
+      </section>
+      <!-- 09 end -->
+      <!-- 10 start -->
+      <section>
+        <h2>10. 垂直方向的媒体查询</h2>
+        <pre>@media (min-height: 500px) {
+  .aside__secondary {
+      position: sticky;
+      bottom: 0;
+  }
+}</pre>
+        <p>调整浏览器的高度,修改或者删除关键代码，查看效果。</p>
+        <div class="ex-section ex10">
+            <div class="ex-area">
+              <div class="ex-container">
+                <div class="demo">
+                    <div class="sidebar">
+                      <ul>
+                        <li>mainmenu1</li>
+                        <li>mainmenu2</li>
+                        <li>mainmenu3</li>
+                        <li>mainmenu4</li>
+                        <li>mainmenu5</li>
+                        <li>mainmenu6</li>
+                      </ul>
+                      <ul class="aside__secondary" style="font-size: 10px;">
+                        <li>secondary_menu1</li>
+                        <li>secondary_menu2</li>
+                        <li>secondary_menu3</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <div class="p2"></div>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="ex-code">
+              <div class="tab-area">
+                <button class="tab html">HTML</button>
+                <button class="tab css">CSS</button>
+              </div>
+              <style class="code-container css" contenteditable></style>
+              <code class="code-container html"></code>
+            </div>
+        </div>
+
+      </section>
+      <!-- 10 end -->
+    </main>
+
+
+      
+    <footer>
+        <p>原文： <a href="https://ishadeed.com/article/the-just-in-case-mindset-css/">https://ishadeed.com/article/the-just-in-case-mindset-css/</a></p>
+    </footer>
+</body>
+</html>
