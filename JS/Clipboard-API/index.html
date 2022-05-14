@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clipboard Api</title>
+    <style>
+        img {
+            display: block;
+            margin: 1em 0;
+        }
+
+        .fail img {
+            display: none;
+        }
+        pre {
+            border: 2px solid red;
+        }
+        .fail pre {
+            border-color: red;
+            background: pink;
+        }
+        .pass pre {
+            border-color: darkgreen;
+            background: lightgreen;
+        }
+
+        .editor {
+            background-color: lightblue;
+            border: 2px solid blue;
+            padding: 1em;
+        }
+        .copyEditor {
+            background-color: lightcyan;
+            border: 2px solid cyan;
+            padding: 1em;
+        }
+        button {
+            margin: 1em 1em 1em 0;
+        }
+        section {
+            margin: 1em 0;
+        }
+    </style>
+</head>
+<body>
+    <pre><code>'clipboard' in navigator === <span class="isSupport">false</span></code></pre>
+    <script>
+        const isSupport = 'clipboard' in navigator;
+        document.body.className = isSupport ? 'pass' : 'fail';
+        document.querySelector('.isSupport').textContent = isSupport;
+    </script>
+    <section>
+        <button onclick="hasClipboardWritePermission()">Write access</button><span class="hasClipboardWritePermission">?</span>
+    </section>
+    <section>
+        <button onclick="hasClipboardReadPermission()">Read access </button><span class="hasClipboardReadPermission">?</span>
+    </section>
+    <section>
+        <textarea class="editor" placeholder="input something"></textarea>
+        <textarea class="copyEditor" placeholder="paste something" disabled></textarea>
+        <button onclick="copyToClipboard()">copy</button>
+        <button onclick="pasteFromClipboard()">paste</button>
+    </section>
+    <section>
+        <button onClick="copyImageToClipboard()">copy an image(.png) from remote url  to clipboard</button>
+    </section>
+    <script>
+        function hasClipboardWritePermission() {
+            navigator.permissions.query({ name: "clipboard-write" }).then((result) => {
+                if (result.state == "granted" || result.state == "prompt") {
+                    document.querySelector(".hasClipboardWritePermission").textContent = 'yes';
+                } else {
+                    document.querySelector(".hasClipboardWritePermission").textContent = 'false';
+                }
+            })
+        }
+
+        function hasClipboardReadPermission() {
+            navigator.permissions.query({ name: "clipboard-read" }).then((result) => {
+                if (result.state == "granted" || result.state == "prompt") {
+                    document.querySelector(".hasClipboardReadPermission").textContent = 'yes';
+                } else {
+                    document.querySelector(".hasClipboardReadPermission").textContent = 'false';
+                }
+            })
+        }
+
+        function copyToClipboard() {
+            var copyText = document.querySelector(".editor").value;
+            navigator.clipboard.writeText(copyText).then(() => {
+                // Resolved text copied to clipboard
+                // Alert the user that the action took place.
+                alert("Copied to clipboard");
+            }, () => {
+                // Rejected - clipboard failed
+            });
+        }
+
+        function pasteFromClipboard() {
+            navigator.clipboard.readText().then((copiedText) => {
+                // Resolved 
+                // do something with  copied text
+                document.querySelector(".copyEditor").value = copiedText;
+            }, () => {
+                // Rejected -  read from clipboard failed
+                alert("read from clipboard failed!");
+            });
+        }
+
+        const copyImageToClipboard = async () => {
+            let url = "https://dummyimage.com/640x360/fff/aaa";
+            const response = await fetch(url);
+            let blob = await response.blob();
+            
+            /*if (blob.type !== "image/png") {
+                // set blob type to image/png
+                let img = new Image(200, 300);
+                img.src = url;
+                blob = await toPNGBlob(img);
+            }*/
+
+            await navigator.clipboard.write([
+                new ClipboardItem({[blob.type]: blob}), // https://www.iana.org/assignments/media-types/media-types.xhtml#image
+            ]).then(() => {
+                alert("copy success! Then you can paste it to somewhere.");
+            });
+        }
+
+        // Draws an image on an offscreen canvas
+        // and converts it to a PNG blob.
+        /*const toPNGBlob = async (img) => {
+            const canvas = new OffscreenCanvas(img.width, img.height);
+            const ctx = canvas.getContext('2d');
+            // This removes transparency. Remove at will.
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            img.onload = async function() {
+                ctx.drawImage(img, 0, 0);
+            }
+            return await canvas.convertToBlob();
+        }*/
+    </script>
+</body>
+</html>
