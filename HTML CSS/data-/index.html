@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>data-*</title>
+    <style>
+        span[data-tooltip] {
+            padding: 0px 5px;
+            position: relative;
+            background: #FFBB99;
+            cursor: pointer;
+        }
+        span::before {
+            position: absolute;
+            top: 1em;
+            padding: 5px;
+            content: attr(data-tooltip);
+            background-color: black;
+            color: white;
+            border-radius: 3px;
+            display: none;
+        }
+
+        span:hover::before {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1>What are data- attributes good for?</h1>
+    <p>1. data-* attribute 可以被JavaScript访问,不需要发送ajax请求或者服务端数据库查询，有利于用户体验</p>
+    <div>
+        <article
+        id="electriccars"
+        data-columns="3"
+        data-index-number="11"
+        data-parent="cars">
+        article with id="electriccars" data-columns="3" data-index-number="11"  data-parent="cars"
+        </article>
+        <button onclick="showData()">查看columns属性</button>
+        <script>
+            function showData() {
+                var article = document.querySelector('#electriccars');
+                var columns = article.dataset.columns;
+                alert(columns);
+            }
+        </script>
+    </div>
+    <p>2. data-* attribute 可以被CSS访问</p>
+    <div>
+        <p>o you serve a page with content in multiple languages?
+            What kind of <span data-tooltip="A simple explanation">Word</span> things must you be wary of when desi</p>
+
+
+            </style>
+    </div>
+</body>
+</html>
