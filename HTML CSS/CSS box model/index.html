@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS box model</title>
+  <style>
+    .box {
+      width: 180px;
+      height: 120px;
+      padding: 20px;
+      margin: 20px;
+      border: 5px solid gray
+    }
+    .box-1 {
+      box-sizing: border-box;
+    }
+    .box-2 {
+      box-sizing: content-box;
+    }
+  </style>
+</head>
+<body class="container">
+  <h1>CSS box model</h1>
+
+  <section>
+    <div class="box box-0" id="box0" data-box="default">box0 default</div>
+    <div class="box box-1" id="box1" data-box="border">box1 border-box</div>
+    <div class="box box-2" id="box2" data-box="content">box2 content-box</div>
+  </section>
+
+  <script>
+    console.log( typeof window.getComputedStyle === 'function');
+    const boxs = document.querySelectorAll('.box');
+    for (let box of boxs) {
+      console.log('box' + '============');
+      console.log(box.dataset.box);
+      let style = window.getComputedStyle(box);
+      console.log('width:' + style.width);
+      console.log('box-sizing:' + style.boxSizing);
+    }
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lifecycle Hooks</title>
+</head>
+<body>
+    <script type="importmap">
+        {
+          "imports": {
+            "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+          }
+        }
+    </script>  
+    <div id="app">{{ count }}</div>
+
+    <script type="module">
+        import { createApp } from 'vue'
+
+        createApp({
+            data() {
+                return {
+                    count: 10
+                }
+            },
+            beforeCreate:() => {
+                /* 这个钩子在你的组件初始化时运行。
+                 * hook 观察组件中的数据和初始化事件。
+                 * 在这里，数据仍然不是反应性的，
+                 * 并且在组件生命周期中发生的事件尚未设置。
+                 */
+                console.log('Nothing gets called at this moment')
+                // `this` points to the view model instance
+                // onsole.log('count is ' + this.count); // count is undefined
+            },
+            setup: () => {
+                console.log('setup');
+                this.count = 11;
+            },
+            created:() => {
+                /* 当 Vue 设置事件和数据观察时调用此钩子。
+                 * 在这里，事件处于活动状态，
+                 * 并且可以访问响应式数据，尽管模板尚未安装或呈现。
+                */
+
+                console.log(this);
+
+                // `this` points to the view model instance
+                console.log('count is: ' + this.count);
+
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

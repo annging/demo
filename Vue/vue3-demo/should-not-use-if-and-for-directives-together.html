@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>为什么不应该在同一个元素上同时使用 if 和 for 指令？</title>
+</head>
+<body>
+    <script type="importmap">
+        {
+          "imports": {
+            "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+          }
+        }
+    </script>  
+    <div id="app">
+        <p>建议不要在与 v-for 相同的元素上使用 v-if。因为 v-for 指令的优先级高于 v-if。s </p>
+        <pre><code>
+              v-for="user in users"
+              v-if="user.isActive"
+        </code></pre>
+        <p>如果按照上面的代码写会出现： <br >Uncaught TypeError: Cannot read properties of undefined (reading 'isActive')</p>
+        <ul>
+            <li
+              v-for="user in activeUsers"
+              :key="user.id"
+            >
+              {{ user.name }}
+            </li>
+          </ul>
+    </div>
+
+    <script type="module">
+        import { createApp } from 'vue'
+
+        createApp({
+            data() {
+                return {
+                    users: [{
+                        id: 1,
+                        name: '1',
+                        isActive: true
+                    }, {
+                        id: 2,
+                        name: '2',
+                        isActive: true
+                    },{
+                        id: 3,
+                        name: '3',
+                        isActive: true
+                    },{
+                        id: 4,
+                        name: '4',
+                        isActive: false
+                    }]
+                }
+            },
+            computed: {
+                activeUsers: function () {
+                return this.users.filter(function (user) {
+                    return user.isActive
+                })
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>
