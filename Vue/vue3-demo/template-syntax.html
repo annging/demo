@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>template syntax</title>
+    <style>
+      section {
+        margin: 30px;
+        max-width: 600px;
+        border: 2px solid blueviolet;
+        padding: 20px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 200px auto;
+      }
+      nav {
+        position: fixed;
+      }
+    </style>
+</head>
+<body>
+    <script type="importmap">
+        {
+          "imports": {
+            "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+          }
+        }
+    </script>  
+    <div id="app" class="grid">
+      <aside>
+        <nav id="nav"></nav>
+      </aside>
+      <main>
+        <section id="section1">
+          <h2>文本插值</h2>
+          <span>msg的值为: {{ msg }}</span>
+        </section>
+        <section id="section2">
+          <h2>原始 HTML</h2>
+          <p>使用文本插值: {{ rawHtml }}</p>
+          <p>使用 v-html 指令：<span v-html="rawHtml"></span></p>
+        </section>
+        <section id="section3">
+          <h2>attribute 绑定</h2>
+          <div v-bind:id="dynamicId"> 这个元素的 id 是： {{ dynamicId }}</div>
+          <h4>简写</h4>
+          <div :id="dynamicId"> 这个元素的 id 是： {{ dynamicId }}</div>
+          <h4>布尔型 Attribute</h4>
+          <button :disabled="isButtonDisabled">Button</button><!-- isButtonDisabled 当为真值，或空时，有这个属性 -->
+          <h4>动态绑定多个值</h4>
+          <div v-bind="objectOfAttrs">
+            打开开发者工具查看这个div的 attribute
+          </div>
+  
+        </section>
+  
+        <section id="section4">
+          <h2>使用 JavaScript 表达式</h2>
+          
+        </section>
+      </main>
+      
+    </div>
+
+    <script type="module">
+        import { createApp } from 'vue'
+
+        const app = createApp({
+            data() {
+                return {
+                  msg: 'aaa',
+                  rawHtml: '<span style="color: red">This should be red.</span>',
+                  dynamicId: Math.floor(Math.random() * 10),
+                  isButtonDisabled: '',
+                  objectOfAttrs: {
+                    id: 'container',
+                    class: 'wrapper'
+                  }
+                }
+            },
+        })
+        
+        app.mount('#app')
+    </script>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const elements = document.querySelectorAll("section");
+        const nav = document.querySelector('nav');
+        let navHtml = '<ul>';
+        for (let element of elements) {
+          let tit = element.firstElementChild.textContent;
+          console.log(element.firstElementChild);
+          navHtml += `<li><a href='#${element.id}'>${tit}</a></li>`
+        }
+        nav.innerHTML = navHtml + '</ul>';
+      })
+    </script>
+</body>
+</html>
